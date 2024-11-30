@@ -28,13 +28,9 @@ IP_RANGES=(
     "25.0.0.0/19"
 )
 
-echo "Blocking IP ranges..."
 
 # Loop through IP ranges and block them
 for IP_RANGE in "${IP_RANGES[@]}"; do
-    echo "Blocking $IP_RANGE"
     iptables -A INPUT -s "$IP_RANGE" -j DROP
     iptables -A FORWARD -s "$IP_RANGE" -j DROP
 done
-
-echo "All specified IP ranges have been blocked."
